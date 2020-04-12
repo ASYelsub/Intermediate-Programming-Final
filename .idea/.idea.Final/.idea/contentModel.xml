@@ -6,6 +6,7 @@
       <e p="Assets" t="Include">
         <e p="JournalScript.cs" t="Include" />
         <e p="UIController.cs" t="Include" />
+        <e p="UIManager.cs" t="Include" />
       </e>
       <e p="Final.sln" t="IncludeFlat" />
       <e p="obj" t="ExcludeRecursive" />
