@@ -23,4 +23,8 @@ public class FauxPlayerController : MonoBehaviour
         playerTransform.eulerAngles = playerRotation;
         //Debug.Log(mouseX);
     }
+    
+    
+    
+   
 }

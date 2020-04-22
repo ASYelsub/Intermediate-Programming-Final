@@ -20,7 +20,16 @@ public class CompassBehavior : MonoBehaviour
     void Update()
     {
         playerRotation = playerTransform.eulerAngles;
-        needleRotation.z = playerRotation.y; 
+        needleRotation.z = EaseOutBack(playerRotation.y - 10f, playerRotation.y, 100f); 
         needleTransform.eulerAngles = needleRotation;
     }
+    public static float EaseOutBack(float start, float end, float value)
+    {
+        float s = 1.70158f;
+        end -= start;
+        value = (value) - 1;
+        return end * ((value) * value * ((s + 1) * value + s) + 1) + start;
+    }
+    
+    //from https://gist.github.com/cjddmut/d789b9eb78216998e95c
 }
