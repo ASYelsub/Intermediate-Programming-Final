@@ -27,7 +27,7 @@ public class CameraAnimate : MonoBehaviour {
                 _yFrq = 8;
                 _yAmp = .05f;
             } else if (_controller.isSprinting) {
-                _yFrq = 20;
+                _yFrq = 10;
                 _yAmp = .1f;
             }
         } else {
