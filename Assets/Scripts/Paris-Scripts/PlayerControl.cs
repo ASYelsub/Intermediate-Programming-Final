@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour {
     public float sneakSpeed;
     public float runSpeed;
     public float jumpForce;
+    public float playerHeight;
     [Header("Physics")]
     public float gravity;
     public float slopeLimit;
@@ -48,7 +49,7 @@ public class PlayerControl : MonoBehaviour {
 //        _sprinting = Input.GetButton("Sprint");
 
         //Jump Behavior (maybe put in own function?)
-        _jumpButton = Input.GetButton("Jump");
+       // _jumpButton = Input.GetButton("Jump");
         if (_grounded && _jumpButton) {
             _jumpTrigger = true;
         }
@@ -221,9 +222,9 @@ public class PlayerControl : MonoBehaviour {
                 return (_canUncrouch) ? .5f : .3f; 
             } else {
                 if (_grounded && _jumpButton) {
-                    return .5f;
+                    return playerHeight;
                 } else {
-                    return .5f;
+                    return playerHeight;
                 }
             }
         }
