@@ -26,7 +26,7 @@ public class PlayerControl : MonoBehaviour {
 
     //Values//
     private float _speed, _xMove, _zMove, _lastYpos, _coyoteTimer = 0;
-    private bool _grounded, _jumpButton, _jumpTrigger, _jumping, _crouching, _canUncrouch, _falling, _sprinting, _canMantle;
+    public bool _grounded, _jumpButton, _jumpTrigger, _jumping, _crouching, _canUncrouch, _falling, _sprinting, _canMantle;
     private Vector3 _moveDirection, _launchVelocity, _mantlePos;
     private RaycastHit slopeHit, mantleHit;
 
@@ -89,6 +89,7 @@ public class PlayerControl : MonoBehaviour {
         }
         _canUncrouch = !(Physics.SphereCast(transform.position, .45f, Vector3.up, out hit, 1f));
 
+        if (!_grounded) Debug.Log("not grounded");
 
         //CamAnimate
         isMoving = ((_xMove != 0 || _zMove != 0) && _grounded);
@@ -135,10 +136,9 @@ public class PlayerControl : MonoBehaviour {
         if (_crouching) {
             cc.height = 1;
             groundedRay = .6f;
-            _grounded = false;
         } else {
             cc.height = 2;
-            groundedRay = 1.1f;
+            groundedRay = 1.5f;
         }
 
 
@@ -146,7 +146,7 @@ public class PlayerControl : MonoBehaviour {
 
         //Add directional movement
         float yDir = _moveDirection.y;
-
+        
         if (_grounded) {
             _moveDirection = (_xMove * transform.right + _zMove * transform.forward).normalized;  //Oreintate based on direction
             _moveDirection *= _speed;
@@ -167,13 +167,13 @@ public class PlayerControl : MonoBehaviour {
             yDir = 0;
             _launchVelocity = Vector3.zero;
             if (_jumping) {
-                yDir = jumpForce / 2;
+                yDir = jumpForce;
                 _launchVelocity = rb.velocity.normalized;
             }
         }
 
         if (_OnSlope()) {
-            _moveDirection += Vector3.Cross(slopeHit.normal, slopeHit.transform.forward) * _speed;
+//            _moveDirection += Vector3.Cross(slopeHit.normal, slopeHit.transform.forward) * _speed;
         }
 
         _moveDirection.y = yDir;
@@ -221,7 +221,7 @@ public class PlayerControl : MonoBehaviour {
                 return (_canUncrouch) ? .5f : .3f; 
             } else {
                 if (_grounded && _jumpButton) {
-                    return .3f;
+                    return .5f;
                 } else {
                     return .5f;
                 }
