@@ -5,6 +5,7 @@ using UnityEngine;
 public class FauxPlayerController : MonoBehaviour
 {
     private float mouseX;
+    private float mouseY;
     private Transform playerTransform;
 
     private Vector3 playerRotation;
@@ -18,8 +19,9 @@ public class FauxPlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mouseY = Input.mousePosition.y;
         mouseX = Input.mousePosition.x;
-        playerRotation = new Vector3(0f, mouseX, 0f);
+        playerRotation = new Vector3(-.05f * mouseY, .05f * mouseX, 0f);
         playerTransform.eulerAngles = playerRotation;
         //Debug.Log(mouseX);
     }
