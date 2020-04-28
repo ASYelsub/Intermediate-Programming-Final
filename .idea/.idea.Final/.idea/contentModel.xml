@@ -11,7 +11,6 @@
           <e p="Paris-Scripts" t="Include">
             <e p="CameraAnimate.cs" t="Include" />
             <e p="CameraLook.cs" t="Include" />
-            <e p="JournalScript.cs" t="Include" />
             <e p="PlayerControl.cs" t="Include" />
           </e>
           <e p="RunecrafterBehavior.cs" t="Include" />
