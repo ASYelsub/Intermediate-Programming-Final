@@ -22,46 +22,38 @@ public class CompassBehavior : MonoBehaviour
     private float torqueScalar;
     [SerializeField]
     private float dampingCoefficient;
-    [SerializeField] 
-    private float torqueConditional;
+   
     
 
     void Update()
     {
-        playerRotation = playerTransform.eulerAngles.y;
+        /*playerRotation = playerTransform.eulerAngles.y;
         //needle is rotating relative to compass instead of worldspace
         needleRotation = needleTransform.eulerAngles.z;
-        if (torque >= torqueConditional)
-        {
-            torque = (playerRotation - needleRotation) * torqueScalar; //The bigger the delta between playerRotation and needleRotation angles, the faster the change should be happening.
-            //torque is increasing the angularVelocity continuously in either direction depending on the difference between playerRotation & needleRotation.
-            angularVelocity += torque * Time.deltaTime;
-            //makes it so it doesnt change like crazy
-            angularVelocity *= dampingCoefficient;
-        
-            //grabbing current EulerAngles
-            Vector3 needleEulerAngles = needleTransform.rotation.eulerAngles;
-            //modifying EulerAngles
-            needleEulerAngles.z += angularVelocity * Time.deltaTime;
-            //applying EulerAngles
-            needleTransform.rotation = Quaternion.Euler(needleEulerAngles);
-        }
-
-        if (torque < torqueConditional)
-        {
-            torque = (playerRotation - needleRotation) * torqueScalar; //The bigger the delta between playerRotation and needleRotation angles, the faster the change should be happening.
-            //torque is increasing the angularVelocity continuously in either direction depending on the difference between playerRotation & needleRotation.
-            angularVelocity += torque * Time.deltaTime;
-            //makes it so it doesnt change like crazy
-            angularVelocity *= dampingCoefficient;
-        
-            //grabbing current EulerAngles
-            Vector3 needleEulerAngles = needleTransform.rotation.eulerAngles;
-            //modifying EulerAngles
-            needleEulerAngles.z += angularVelocity * Time.deltaTime;
-            //applying EulerAngles
-            needleTransform.rotation = Quaternion.Euler(needleEulerAngles);
-        }
+        needleRotation = playerRotation;*/
+        /*  //problems that these if statements fix: 360 is greater than 0, so when moving to the left, if the rotation of the needle is decreasing, it cannot decrease from 0 to 360.
+          
+          if (needleRotation >= 0 && needleRotation <= 180 && 
+              playerRotation <= 180 && playerRotation >= 340) //right of 0 to left of 0
+          {
+              playerRotation = playerRotation - 360;
+          }
+          else if (needleRotation <= 360 && needleRotation >= 180 &&
+                   playerRotation >= 0 && playerRotation <= 180) //left of 0 to right of 0
+          {
+              playerRotation = playerRotation + 360;
+          }
+          torque = (playerRotation - needleRotation) * torqueScalar; //The bigger the delta between playerRotation and needleRotation angles, the faster the change should be happening.
+          //torque is increasing the angularVelocity continuously in either direction depending on the difference between playerRotation & needleRotation.
+          angularVelocity += torque * Time.deltaTime;
+          //makes it so it doesnt change like crazy
+          angularVelocity *= dampingCoefficient;
+          //grabbing current EulerAngles
+          Vector3 needleEulerAngles = needleTransform.rotation.eulerAngles;
+          //modifying EulerAngles
+          needleEulerAngles.z += angularVelocity * Time.deltaTime;
+          //applying EulerAngles
+          needleTransform.rotation = Quaternion.Euler(needleEulerAngles);*/
 
     }
    
