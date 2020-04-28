@@ -90,8 +90,6 @@ public class PlayerControl : MonoBehaviour {
         }
         _canUncrouch = !(Physics.SphereCast(transform.position, .45f, Vector3.up, out hit, 1f));
 
-        if (!_grounded) Debug.Log("not grounded");
-
         //CamAnimate
         isMoving = ((_xMove != 0 || _zMove != 0) && _grounded);
         isCrouching = _crouching;
