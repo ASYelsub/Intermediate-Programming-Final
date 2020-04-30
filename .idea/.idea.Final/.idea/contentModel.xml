@@ -14,6 +14,7 @@
             <e p="PlayerControl.cs" t="Include" />
           </e>
           <e p="RunecrafterBehavior.cs" t="Include" />
+          <e p="SunBehavior.cs" t="Include" />
           <e p="UIManager.cs" t="Include" />
         </e>
         <e p="Shaders" t="Include">
