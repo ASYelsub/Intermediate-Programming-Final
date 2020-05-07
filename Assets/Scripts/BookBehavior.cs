@@ -16,7 +16,7 @@ public class BookBehavior : MonoBehaviour {
     public Sprite[] symbols;
     public Sprite blankTexure;
 
-    private entry[] entries = new entry[8];
+    private entry[] entries = new entry[12];
 
     void Start() {
 
@@ -36,8 +36,8 @@ public class BookBehavior : MonoBehaviour {
 
         //Move Entry Index
         entryIndex += dir;
-        if (entryIndex == 8) entryIndex = 0;
-        else if (entryIndex == -1) entryIndex = 7;
+        if (entryIndex == 12) entryIndex = 0;
+        else if (entryIndex == -1) entryIndex = 11;
 
         //Load Next Info
         DisplayedDescription = entries[entryIndex].description;
