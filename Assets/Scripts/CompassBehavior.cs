@@ -1,32 +1,45 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 //This script goes on the Compass object, which is found through Canvas>Active Element Image>Compass
 //It controls how the "needle," aka CompassNeedleImage which is a child object, it is dependent
 //on the direction the player is facing.
 public class CompassBehavior : MonoBehaviour
-{
-    public Transform playerTransform;
-    [SerializeField]
-    private float playerRotation;
-    [SerializeField]
+{    
+    //Used variables for simple compass functionality
+    [SerializeField] private Transform compassTransform;
+    [SerializeField] private float compassRotation;
+    [SerializeField] private Transform playerTransform;
+    [SerializeField] private float playerRotation;
+    
+    
+    
+    //These variables are unused, but they existed so that the needle would have a friction effect. We ultimately decided to just change it to connect to the player's rotation.
     private Transform needleTransform;
-    [SerializeField]
     private float needleRotation;
-    [SerializeField]
     private float angularVelocity;
-    [SerializeField] 
     private float torque;
     [Header("Tuning Variables")]
     [SerializeField]
     private float torqueScalar;
     [SerializeField]
     private float dampingCoefficient;
-   
-    
+
+    private void Start()
+    {
+        
+    }
 
     void Update()
     {
+        playerRotation = playerTransform.eulerAngles.y;
+        compassTransform.eulerAngles = new Vector3(compassTransform.eulerAngles.x,compassTransform.eulerAngles.y,playerRotation);
+
+
+
+
+
         /*playerRotation = playerTransform.eulerAngles.y;
         //needle is rotating relative to compass instead of worldspace
         needleRotation = needleTransform.eulerAngles.z;
