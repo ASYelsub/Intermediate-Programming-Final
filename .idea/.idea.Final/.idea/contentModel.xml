@@ -7,6 +7,7 @@
         <e p="Scripts" t="Include">
           <e p="BookBehavior.cs" t="Include" />
           <e p="CompassBehavior.cs" t="Include" />
+          <e p="LanternBehavior.cs" t="Include" />
           <e p="MapBehavior.cs" t="Include" />
           <e p="Paris-Scripts" t="Include">
             <e p="CameraAnimate.cs" t="Include" />
