@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class LanternBehavior : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] 
+    private Transform lanternTransform;
+    [SerializeField] 
+    private GameObject lightSource;
+    private bool isPutAway = false; //if false, the lantern is out
+    private bool beingPutAway = false; //if false, the lantern's position is stagnant
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void SwitchLightState()
+    {
+
+
     }
 }
