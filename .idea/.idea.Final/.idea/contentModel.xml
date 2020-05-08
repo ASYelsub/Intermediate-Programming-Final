@@ -4,9 +4,11 @@
     <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="PlacedRunePrefab.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BookBehavior.cs" t="Include" />
           <e p="CompassBehavior.cs" t="Include" />
+          <e p="Credits.cs" t="Include" />
           <e p="LanternBehavior.cs" t="Include" />
           <e p="MapBehavior.cs" t="Include" />
           <e p="Paris-Scripts" t="Include">
