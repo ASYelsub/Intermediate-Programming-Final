@@ -23,6 +23,7 @@ public class CameraLook : MonoBehaviour
 
     void Start() {
         Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     void Update() {
@@ -42,7 +43,9 @@ public class CameraLook : MonoBehaviour
             transform.localEulerAngles = new Vector3(-mouseLook.y, mouseLook.x, 0);
             controller.transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
         }
-        if (Input.GetKeyDown("tab")) {
+        if (Input.GetKeyDown("tab"))
+        {
+            Cursor.visible = !Cursor.visible;
             if (!UIViewMode) Cursor.lockState = CursorLockMode.None;
             else Cursor.lockState = CursorLockMode.Locked;
             UIViewMode = !UIViewMode;

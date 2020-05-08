@@ -4,5 +4,8 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Gameplay Scene-Paris.unity
+    guid: edd1d0951659e0245b65cb63d6c078c2
   m_configObjects: {}
