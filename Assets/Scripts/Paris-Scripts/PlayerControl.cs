@@ -11,6 +11,7 @@ public class PlayerControl : MonoBehaviour {
     public float runSpeed;
     public float jumpForce;
     public float playerHeight;
+    public bool disabled;
     [Header("Physics")]
     public float gravity;
     public float slopeLimit;
@@ -44,34 +45,42 @@ public class PlayerControl : MonoBehaviour {
 
     void Update() {
         //Inputs//
-        _xMove = Input.GetAxis("Horizontal");
-        _zMove = Input.GetAxis("Vertical");
-//        _sprinting = Input.GetButton("Sprint");
+        if (!disabled) {
+            _xMove = Input.GetAxis("Horizontal");
+            _zMove = Input.GetAxis("Vertical");
+            //        _sprinting = Input.GetButton("Sprint");
 
-        //Jump Behavior (maybe put in own function?)
-       // _jumpButton = Input.GetButton("Jump");
-        if (_grounded && _jumpButton) {
-            _jumpTrigger = true;
-        }
+            //Jump Behavior (maybe put in own function?)
+            // _jumpButton = Input.GetButton("Jump");
 
-        if (_jumpTrigger && !_grounded) {
-            _jumping = true;
-            _jumpTrigger = false;
-        }
 
-        if (_jumpTrigger && !_jumpButton) {
-            _jumping = true;
-            _jumpTrigger = false;
-        }
 
-        if (Input.GetButtonDown("Crouch")) {
-            if (_crouching) {
-                if (_canUncrouch) _crouching = false;
-            } else {
-                _crouching = true;
+            if (_grounded && _jumpButton) {
+                _jumpTrigger = true;
             }
-        }
 
+            if (_jumpTrigger && !_grounded) {
+                _jumping = true;
+                _jumpTrigger = false;
+            }
+
+            if (_jumpTrigger && !_jumpButton) {
+                _jumping = true;
+                _jumpTrigger = false;
+            }
+
+            if (Input.GetButtonDown("Crouch")) {
+                if (_crouching) {
+                    if (_canUncrouch) _crouching = false;
+                } else {
+                    _crouching = true;
+                }
+            }
+
+        } else {
+            _xMove = 0;
+            _zMove = 0;
+        }
 
         //Condition Checks//
         RaycastHit hit;

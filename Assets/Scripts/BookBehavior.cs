@@ -14,11 +14,11 @@ public class BookBehavior : MonoBehaviour {
     private int entryIndex = 0;
 
     public Sprite[] symbols;
-    public Sprite blankTexure;
+    public Sprite blankTexture;
 
     private entry[] entries = new entry[12];
 
-    void Start() {
+    void Awake() {
 
         //Config Each Book Entry
         for (int i = 0; i < entries.Length; i++) {

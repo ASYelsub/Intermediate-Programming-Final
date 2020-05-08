@@ -14,10 +14,9 @@ public class SunBehavior : MonoBehaviour
     [SerializeField]
     private GameObject lightSource;
 
-    private Vector3 lightRotation;
-    private bool setMorning = false;
-    private bool setEvening = false;
-    private bool sunMovingFast = false;
+    public Vector3 lightRotation;
+    private float targetTime;
+    private bool switchTime;
 
     void Start()
     {//sets the light so i can see if it's in devmode, sets to sunrise starting point if it's in not devmode
@@ -33,62 +32,32 @@ public class SunBehavior : MonoBehaviour
             lightRotation.x += timeAdd * Time.deltaTime;
             lightSource.transform.eulerAngles = lightRotation;
         }
+
+        if (lightRotation.x >= 360) {
+            lightRotation.x = 0;
+        }
+
+        timeAdd = (switchTime) ? 50 : 1;
         
-        
-        
-        //these are the shortcuts to morning or evening
-        if (setMorning && !setEvening && sunMovingFast)
-        {
-            //the sun is moving
-            sunMovingFast = true;
-            //we are not in the setEvening functionality
-            setEvening = false;
-            //the range that the sun should end at
-            if (Mathf.Abs(lightSource.transform.eulerAngles.x) >= .5f)
-            {
-                //makes it go backwards... this works because it doesn't mess w/ quaternions
-                lightRotation.x -= timeAdd * Time.deltaTime * timeSetMultiplier;
-                lightSource.transform.eulerAngles = lightRotation;
-            }
-            else if (Mathf.Abs(lightSource.transform.eulerAngles.x) <= .5f)
-            {
-                setMorning = false;
-                sunMovingFast = false;
+        if (switchTime) {
+            if (lightRotation.x < targetTime + 10 && lightRotation.x > targetTime - 10) {
+                switchTime = false;
             }
         }
 
-        if (setEvening && !setMorning && sunMovingFast)
-        {
-            setMorning = false;
-            sunMovingFast = true;
-            if (Mathf.Abs(lightSource.transform.eulerAngles.x) <= 180.5f)
-            {
-                lightRotation.x += timeAdd * Time.deltaTime * timeSetMultiplier;
-                lightSource.transform.eulerAngles = lightRotation;
-            }
-            else if (Mathf.Abs(lightSource.transform.eulerAngles.x) >= 180.5f)
-            {
-                setEvening = false;
-                sunMovingFast = false;
-            }
-        }
-
-        
     }
 
     public void SetMorning()
     {
         //sets to sun moving, sets it to the setmorning functionality, disables the setevening functionality.
-        sunMovingFast = true;
-        setMorning = true;
-        setEvening = false;
+        switchTime = true;
+        targetTime = 5;
     }
 
     public void SetEvening()
     {
         //this is similar to above except it flips setmorning & setevening
-        sunMovingFast = true;
-        setEvening = true;
-        setMorning = false;
+        switchTime = true;
+        targetTime = 190;
     }
 }

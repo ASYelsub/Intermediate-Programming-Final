@@ -26,8 +26,8 @@ public class CameraLook : MonoBehaviour
     }
 
     void Update() {
-        
 
+        controller.GetComponent<PlayerControl>().disabled = UIViewMode;
 
         if (!UIViewMode) {
             var md = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
